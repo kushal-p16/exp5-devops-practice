@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-client
+
+  template:
+    metadata:
+      labels:
+        app: my-client
+
+    spec:
+      containers:
+        - name: client
+          image: my-client:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SERVER_URL
+              value: "http://html-service:80"

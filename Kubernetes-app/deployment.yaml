@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html-app
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: html-app
+
+  template:
+    metadata:
+      labels:
+        app: html-app
+
+    spec:
+      containers:
+        - name: html-container
+          image: dradityacr/tomcat-static-app:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
